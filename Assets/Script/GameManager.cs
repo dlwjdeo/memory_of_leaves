@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Goods")]
     public int Water;
+    public int Shine;
 
     [Header("Leaves")]
     public GameObject[] Leaves;

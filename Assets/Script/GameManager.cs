@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused;
 
+    public DayState dayState = DayState.Day;
+
+
     [Header("Goods")]
     public int Water;
     public int Shine;

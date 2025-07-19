@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Plant : MonoBehaviour
 {
-    [SerializeField] private SpeakerType type = SpeakerType.±â»Ý½Ä¹°;
+    [SerializeField] private SpeakerType type;
     [SerializeField] private int dialogId = 0;
 
     private void OnMouseDown()

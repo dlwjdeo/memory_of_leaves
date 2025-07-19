@@ -17,7 +17,7 @@ public class DialogManager : MonoBehaviour
         }
 
         isAction = true;
-        GameManager.instance.SetPause(true);
+        GameManager.instance.pauseManager.SetPause(true);
 
         dialogController.gameObject.SetActive(true);
         dialogController.StartDialog(lines);
@@ -50,7 +50,7 @@ public class DialogManager : MonoBehaviour
     public void EndDialog()
     {
         dialogController.gameObject.SetActive(false);
-        GameManager.instance.SetPause(false);
+        GameManager.instance.pauseManager.SetPause(false);
         isAction = false;
     }
 }

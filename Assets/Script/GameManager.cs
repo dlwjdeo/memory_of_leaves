@@ -7,8 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public DialogManager dialogManager;
-
-    public bool isPaused;
+    public PauseManager pauseManager;
 
     public DayState dayState = DayState.Day;
 
@@ -16,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("Goods")]
     public int Water;
     public int Shine;
+    public int MemoryPiece;
 
     [Header("Leaves")]
     public GameObject[] Leaves;
@@ -33,16 +33,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetPause(bool pause)
-    {
-        isPaused = pause;
-        if (isPaused)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
-    }
 }

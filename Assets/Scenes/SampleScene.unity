@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 648142291}
   - component: {fileID: 648142290}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -406,7 +406,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogManager: {fileID: 1667326899}
   isPaused: 0
+  dayState: 0
   Water: 0
+  Shine: 0
+  MemoryPiece: 0
   Leaves: []
 --- !u!4 &648142291
 Transform:

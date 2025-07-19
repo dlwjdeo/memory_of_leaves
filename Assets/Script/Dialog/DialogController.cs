@@ -1,40 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class DialogController : MonoBehaviour
 {
-    public GameObject dialogPanel;
-    public TMP_Text speakerNameText;
-    public TMP_Text contentText;
-    public Image portraitImage;
+    public TextMeshProUGUI speakerText;
+    public TextMeshProUGUI contentText;
 
-    public Sprite neutralSprite;
-    public Sprite smileSprite;
-    public Sprite mysteriousSprite;
+    private DialogLine[] currentDialog;
+    private int dialogIndex;
 
-    public void ShowDialogPanel(bool show)
+    public void StartDialog(DialogLine[] dialogLines)
     {
-        dialogPanel.SetActive(show);
+        currentDialog = dialogLines;
+        dialogIndex = 0;
+        ShowDialog();
     }
 
-    public void UpdateLine(DialogLine line)
+    public void ShowDialog()
     {
-        speakerNameText.text = line.speaker.ToString();
-        contentText.text = line.content;
-        portraitImage.sprite = GetPortraitSprite(line.portrait);
-    }
-
-    private Sprite GetPortraitSprite(PortraitType type)
-    {
-        return type switch
+        if (dialogIndex >= currentDialog.Length)
         {
-            PortraitType.Neutral => neutralSprite,
-            PortraitType.Smile => smileSprite,
-            PortraitType.Mysterious => mysteriousSprite,
-            _ => null
-        };
+            FindObjectOfType<DialogManager>().EndDialog();
+            return;
+        }
+
+        var line = currentDialog[dialogIndex];
+        speakerText.text = line.Speaker.ToString();
+        contentText.text = line.Text;
+
+        dialogIndex++;
+    }
+
+    private void Update()
+    {
+        if (!gameObject.activeSelf) return;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ShowDialog();
+        }
     }
 }

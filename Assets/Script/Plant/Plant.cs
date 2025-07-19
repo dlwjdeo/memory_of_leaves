@@ -1,28 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class Plant : MonoBehaviour
 {
-    public PlantId plantId = PlantId.plant_anger;
-    public StageKey stage = StageKey.stage1;
+    [SerializeField] private SpeakerType type = SpeakerType.기쁨식물;
+    [SerializeField] private int dialogId = 0;
 
     private void OnMouseDown()
     {
-        OnInteract();
-    }
-
-    public void OnInteract()
-    {
-        DialogId? dialogId = DialogMap.GetDialogId(plantId, stage);
-        if (dialogId.HasValue)
+        var manager = FindObjectOfType<DialogManager>();
+        if (manager != null)
         {
-            FindObjectOfType<DialogManager>().StartDialog(dialogId.Value);
-        }
-        else
-        {
-            Debug.LogWarning("대사 없음");
+            manager.StartDialog(type, dialogId);
         }
     }
 }
